@@ -2,12 +2,12 @@
     "Tasks":[
         {
             "Period":25,
-            "Command":"wget -O- https://mars.studio",
+            "Command":"wget -O- https://google.com",
             "Output":"./logs.txt"
         },
         {
             "Period":10,
-            "Command":"ping mars.studio",
+            "Command":"ping google.com",
             "Output":"./logs2.txt"
         }
     ]
