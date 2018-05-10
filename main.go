@@ -35,14 +35,8 @@ func main() {
 	if err_json != nil {
 		fmt.Println("error:", err_json)
 	}
-	//fmt.Printf("%+v", taskArray)
-	//fmt.Println(string(b))
-
 	for {
 		for _, element := range taskArray.Tasks {
-			// index is the index where we are
-			// element is the element from someSlice for where we are
-			//fmt.Println(element.Time)
 			if (needToRunNow(element.Period)) {
 				fmt.Println(time.Now())
 				fmt.Println(element.Command)
@@ -71,8 +65,6 @@ func runcmd(cmd string, shell bool) []byte {
 }
 
 func needToRunNow(period int32) bool {
-	//var period int
-	//period = 1
 	current:=int32(time.Now().Unix())
 	if (current % period == 0) {
 		return true
