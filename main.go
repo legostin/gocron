@@ -40,26 +40,28 @@ func main() {
 			if (needToRunNow(element.Period)) {
 				fmt.Println(time.Now())
 				fmt.Println(element.Command)
-				go runcmd(element.Command+" >> "+element.Output, true)
+				go runCommand(element.Command, element.Output)
 			}
 		}
 			time.Sleep(time.Millisecond*1000)
 	}
 }
 
+func runCommand(command string, output string) {
+	runcmd(command+" >> "+output, true)
+}
 
 func runcmd(cmd string, shell bool) []byte {
 	if shell {
 		out, err := exec.Command("bash", "-c", cmd).Output()
 		if err != nil {
-			log.Fatal(err)
-			panic("some error found")
+			fmt.Println(err)
 		}
 		return out
 	}
 	out, err := exec.Command(cmd).Output()
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println(err)
 	}
 	return out
 }
