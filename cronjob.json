@@ -2,12 +2,12 @@
     "Tasks":[
         {
             "Period":12,
-            "Command":"wget -O- http://mtender.net/frontend/web/site/sync-elastic",
+            "Command":"ping google.com",
             "Output":"./logs.txt"
         },
         {
             "Period":12,
-            "Command":"wget -O- http://mtender.net/frontend/web/site/sync-elastic",
+            "Command":"ping google.com",
             "Output":"./logs.txt"
         }
     ]
