@@ -3,8 +3,8 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"gocron/timechecker"
-	"gocron/types"
+	"github.com/legostin/gocron/timechecker"
+	"github.com/legostin/gocron/types"
 	"io/ioutil"
 	"log"
 	"os"
