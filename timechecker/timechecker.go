@@ -74,9 +74,8 @@ func NeedToRunNow(element types.Task) bool {
 func checkPeriod(period int32, current int32) bool {
 	if current%period == 0 {
 		return true
-	} else {
-		return false
 	}
+	return false
 }
 
 //checkInSleepTime функция, которая определяет не входит ли текущее время в промежуток "сна" для задачи
@@ -86,18 +85,17 @@ func checkInSleepTime(sleeprange string, currentTime string) bool {
 	currentSeconds := toInteger(currentTime)
 	if currentSeconds >= sleeprangeStart && currentSeconds <= sleeprangeEnd {
 		return true
-	} else {
-		return false
 	}
+	return false
+
 }
 
 //checkInSleepingDays Проверка, не входил ли текущее время в дни "сна" задачи
 func checkInSleepingDays(day string, currentDay string) bool {
 	if day == currentDay {
 		return true
-	} else {
-		return false
 	}
+	return false
 }
 
 //checkInTime Функция проверяет, не является ли текущее время моментом запуска задачи
@@ -106,9 +104,8 @@ func checkInTime(time string, currentTime string) bool {
 	if time == currentTime {
 		fmt.Println(time, currentTime)
 		return true
-	} else {
-		return false
 	}
+	return false
 }
 
 //toInteger функция для преобразования времени в секунды с полуночи
