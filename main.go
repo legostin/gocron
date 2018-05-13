@@ -1,16 +1,16 @@
 package main
 
 import (
-	"log"
-	"io/ioutil"
-	"fmt"
-	"os"
 	"encoding/json"
-	"time"
-	"os/exec"
+	"fmt"
 	"gocron/timechecker"
 	"gocron/types"
+	"io/ioutil"
+	"log"
+	"os"
+	"os/exec"
 	"strconv"
+	"time"
 )
 
 func main() {
@@ -29,7 +29,7 @@ func main() {
 			fmt.Println("error:", err_json)
 		}
 		for _, element := range taskArray.Tasks {
-			if (timechecker.NeedToRunNow(element)) {
+			if timechecker.NeedToRunNow(element) {
 				fmt.Println(time.Now())
 				go runCommand(element.Command, element.Output)
 			}
@@ -37,7 +37,6 @@ func main() {
 		time.Sleep(time.Millisecond * 1000)
 	}
 }
-
 
 func runCommand(command string, output string) {
 	cmnd := command + " >> " + output
@@ -74,7 +73,7 @@ func gocronLog(message_type string, message string) {
 	f, _ := os.OpenFile("./logs/gocron.log", os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
 	f.WriteString(format_message)
 	f.Close()
-	if (message_type == "ERROR") {
+	if message_type == "ERROR" {
 		f, _ := os.OpenFile("./logs/error.log", os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
 		f.WriteString(format_message)
 		f.Close()
