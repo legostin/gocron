@@ -73,3 +73,5 @@
        "Output": "./logs4.txt"
 }
  ```
+ 
+За примером заполнения файла с задачами можете заглянуть в файл [cronjob.json](https://github.com/legostin/gocron/blob/master/cronjob.json)
