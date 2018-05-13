@@ -1,4 +1,7 @@
+
 **Gocron -- минималистичное решение для запуска задач, чаще, чем раз в минуту**
+
+[![Go Report Card](https://goreportcard.com/badge/github.com/legostin/gocron)](https://goreportcard.com/report/github.com/legostin/gocron)
 
 **Запуск:**
 1. У Вас должен быть установлен Go актуальной версии, и прописан $GOPATH
