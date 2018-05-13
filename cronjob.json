@@ -1,41 +1,41 @@
 {
-    "Tasks":[
-        {
-            "Period":15,
-            "Command":"ping -c 4 google.com",
-            "Output":"./logs.txt"
-        },
-        {
-            "Period":84,
-            "SleepTime":[
-                "19:00:00-23:00:00",
-                "06:00:00-13:58:00"
-            ],
-            "SleepDays":[
-                "Mon"
-            ],
-            "Command":"ping -c 4 google2.com",
-            "Output":"./logs2.txt"
-        },
-        {
-            "Time":[
-                "14:05:10",
-                "14:30:00",
-                "15:00:00",
-                "17:00:00"
-            ],
-            "Command":"ping -c 4 google3.com",
-            "Output":"./logs3.txt"
-        },
-        {
-            "DateTime":[
-                "2018-05-13 14:07:22",
-                "2018-05-13 13:55:10",
-                "2018-05-14 15:00:00",
-                "2018-05-15 17:00:00"
-            ],
-            "Command":"ping -c 4 google4.com",
-            "Output":"./logs4.txt"
-        }
-    ]
+  "Tasks": [
+    {
+      "Period": 15,
+      "Command": "ping -c 4 google.com",
+      "Output": "./logs.txt"
+    },
+    {
+      "Period": 84,
+      "SleepTime": [
+        "19:00:00-23:00:00",
+        "06:00:00-13:58:00"
+      ],
+      "SleepDays": [
+        "Mon"
+      ],
+      "Command": "ping -c 4 google2.com",
+      "Output": "./logs2.txt"
+    },
+    {
+      "Time": [
+        "14:05:10",
+        "14:30:00",
+        "15:00:00",
+        "17:00:00"
+      ],
+      "Command": "ping -c 4 google3.com",
+      "Output": "./logs3.txt"
+    },
+    {
+      "DateTime": [
+        "2018-05-13 14:07:22",
+        "2018-05-13 13:55:10",
+        "2018-05-14 15:00:00",
+        "2018-05-15 17:00:00"
+      ],
+      "Command": "ping -c 4 google4.com",
+      "Output": "./logs4.txt"
+    }
+  ]
 }

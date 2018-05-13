@@ -108,7 +108,7 @@ func checkInTime(time string, current_time string) bool {
 
 func toInteger(time string) int{
 	hours,_:=strconv.Atoi(strings.Split(time,":")[0])
-	minutes,_:=strconv.Atoi(strings.Split(time,":")[1])
+	minutes,_:= strconv.Atoi(strings.Split(time,":")[1])
 	seconds,_:=strconv.Atoi(strings.Split(time,":")[2])
 	return hours*3600+minutes*60+seconds
 }
