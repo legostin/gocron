@@ -24,9 +24,9 @@ func main() {
 		b, err := ioutil.ReadAll(file)
 		var taskArray types.TaskArray
 		//var tasks []Task
-		err_json := json.Unmarshal(b, &taskArray)
-		if err_json != nil {
-			fmt.Println("error:", err_json)
+		errJson := json.Unmarshal(b, &taskArray)
+		if errJson != nil {
+			fmt.Println("error:", errJson)
 		}
 		for _, element := range taskArray.Tasks {
 			if timechecker.NeedToRunNow(element) {
@@ -45,14 +45,14 @@ func runCommand(command string, output string) {
 }
 
 func runcmd(cmd string, shell bool) []byte {
-	start_time := int(time.Now().Unix())
+	startTime := int(time.Now().Unix())
 	if shell {
 		out, err := exec.Command("bash", "-c", cmd).Output()
 		if err != nil {
 			gocronLog("ERROR", cmd+"("+err.Error()+")")
 		}
-		finish_time := int(time.Now().Unix())
-		t := strconv.Itoa(finish_time - start_time)
+		finishTime := int(time.Now().Unix())
+		t := strconv.Itoa(finishTime - startTime)
 		gocronLog("FINISH in "+t+"s", cmd)
 		return out
 	}
@@ -61,21 +61,21 @@ func runcmd(cmd string, shell bool) []byte {
 		gocronLog("ERROR", cmd+"("+err.Error()+")")
 
 	}
-	finish_time := int(time.Now().Unix())
-	t := strconv.Itoa(finish_time - start_time)
+	finishTime := int(time.Now().Unix())
+	t := strconv.Itoa(finishTime - startTime)
 	gocronLog("FINISH in "+t, cmd)
 	return out
 }
 
-func gocronLog(message_type string, message string) {
-	format_message := "[" + time.Now().String() + "]" + " " + message_type + ": " + message + "\n"
-	fmt.Println(format_message)
+func gocronLog(messageType string, message string) {
+	formatMessage := "[" + time.Now().String() + "]" + " " + messageType + ": " + message + "\n"
+	fmt.Println(formatMessage)
 	f, _ := os.OpenFile("./logs/gocron.log", os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
-	f.WriteString(format_message)
+	f.WriteString(formatMessage)
 	f.Close()
-	if message_type == "ERROR" {
+	if messageType == "ERROR" {
 		f, _ := os.OpenFile("./logs/error.log", os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
-		f.WriteString(format_message)
+		f.WriteString(formatMessage)
 		f.Close()
 	}
 }
