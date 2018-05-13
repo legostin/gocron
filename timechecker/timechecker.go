@@ -42,26 +42,26 @@ func NeedToRunNow(element types.Task) bool {
 
 	// Если задано, что задача должна выполняться в определенное время, то проверяем это условие
 	if need && len(element.Time) > 0 {
-		temp_need := false
+		tempNeed := false
 		for _, stime := range element.Time {
 			if checkInTime(stime, currentTime) {
-				temp_need = true
+				tempNeed = true
 			}
 		}
-		if !temp_need {
+		if !tempNeed {
 			need = false
 		}
 	}
 
 	// Если задано, что задача должна выполняться в определенный день, то проверяем это условие
 	if need && len(element.DateTime) > 0 {
-		temp_need_datetime := false
+		tempNeedDatetime := false
 		for _, sdatetime := range element.DateTime {
 			if checkInTime(sdatetime, currentDate+" "+currentTime) {
-				temp_need_datetime = true
+				tempNeedDatetime = true
 			}
 		}
-		if !temp_need_datetime {
+		if !tempNeedDatetime {
 			need = false
 		}
 	}
