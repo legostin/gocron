@@ -1,4 +1,5 @@
 package types
+
 //Task тип данных для заданий
 type Task struct {
 	Period    int32
@@ -9,6 +10,7 @@ type Task struct {
 	Command   string
 	Output    string
 }
+
 //TaskArray массив заданий
 type TaskArray struct {
 	Tasks []Task
