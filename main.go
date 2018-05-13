@@ -21,7 +21,7 @@ func main() {
 			log.Fatal(err)
 		}
 		defer file.Close()
-		b, err := ioutil.ReadAll(file)
+		b, _ := ioutil.ReadAll(file)
 		var taskArray types.TaskArray
 		//var tasks []Task
 		errJson := json.Unmarshal(b, &taskArray)
