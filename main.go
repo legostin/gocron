@@ -8,18 +8,11 @@ import (
 	"encoding/json"
 	"time"
 	"os/exec"
+	"gocron/timechecker"
+	"gocron/types"
+	"strconv"
 )
 
-type Task struct {
-	Period int32
-	Command string
-	Output string
-}
-
-
-type TaskArray struct {
-	Tasks []Task
-}
 
 func main() {
 	file, err := os.Open("cronjob.json")
@@ -29,7 +22,7 @@ func main() {
 	defer file.Close()
 
 	b, err := ioutil.ReadAll(file)
-	var taskArray TaskArray
+	var taskArray types.TaskArray
 	//var tasks []Task
 	err_json := json.Unmarshal(b, &taskArray)
 	if err_json != nil {
@@ -37,9 +30,9 @@ func main() {
 	}
 	for {
 		for _, element := range taskArray.Tasks {
-			if (needToRunNow(element.Period)) {
+			if (timechecker.NeedToRunNow(element)) {
 				fmt.Println(time.Now())
-				fmt.Println(element.Command)
+				fmt.Println("need to run",element.Command)
 				go runCommand(element.Command, element.Output)
 			}
 		}
@@ -48,30 +41,44 @@ func main() {
 }
 
 func runCommand(command string, output string) {
+	cmnd:=command+" >> "+output
+	gocronLog("START",cmnd)
 	runcmd(command+" >> "+output, true)
 }
 
 func runcmd(cmd string, shell bool) []byte {
+	start_time:=int(time.Now().Unix())
 	if shell {
 		out, err := exec.Command("bash", "-c", cmd).Output()
 		if err != nil {
-			fmt.Println(err)
+			gocronLog("ERROR",cmd+"("+err.Error()+")")
 		}
+		finish_time:=int(time.Now().Unix())
+		t:=strconv.Itoa(finish_time-start_time)
+		gocronLog("FINISH in "+t+"s",cmd)
 		return out
 	}
 	out, err := exec.Command(cmd).Output()
 	if err != nil {
-		fmt.Println(err)
+		gocronLog("ERROR",cmd+"("+err.Error()+")")
+
 	}
+	finish_time:=int(time.Now().Unix())
+	t:=strconv.Itoa(finish_time-start_time)
+	gocronLog("FINISH in "+t,cmd)
 	return out
 }
 
-func needToRunNow(period int32) bool {
-	current:=int32(time.Now().Unix())
-	if (current % period == 0) {
-		return true
-	} else {
-		return false
+func gocronLog(message_type string, message string) {
+	format_message:="["+time.Now().String()+"]"+" "+message_type+": "+message+"\n"
+	fmt.Println(format_message)
+	f, _ := os.OpenFile("./logs/gocron.log", os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
+	f.WriteString(format_message)
+	f.Close()
+	if (message_type=="ERROR") {
+		f, _ := os.OpenFile("./logs/error.log", os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
+		f.WriteString(format_message)
+		f.Close()
 	}
 
 }
