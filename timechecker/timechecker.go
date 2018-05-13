@@ -21,7 +21,6 @@ func NeedToRunNow(element types.Task) bool {
 			need=false
 		}
 	}
-
 	// Проверяем, не входит ли текущее время в период "сна" задания
 	if (need) {
 		for _, stime := range element.SleepTime {

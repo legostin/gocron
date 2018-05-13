@@ -38,6 +38,7 @@ func main() {
 	}
 }
 
+
 func runCommand(command string, output string) {
 	cmnd := command + " >> " + output
 	gocronLog("START", cmnd)
