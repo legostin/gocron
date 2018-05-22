@@ -2,7 +2,7 @@ package timechecker
 
 import (
 	"fmt"
-	"github.com/legostin/gocron/types"
+	"gocron/types"
 	"strconv"
 	"strings"
 	"time"

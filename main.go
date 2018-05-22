@@ -3,8 +3,8 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/legostin/gocron/timechecker"
-	"github.com/legostin/gocron/types"
+	"gocron/timechecker"
+	"gocron/types"
 	"io/ioutil"
 	"log"
 	"os"
@@ -22,6 +22,8 @@ func main() {
 		}
 		defer file.Close()
 		b, _ := ioutil.ReadAll(file)
+		file.Close()
+
 		var taskArray types.TaskArray
 		//var tasks []Task
 		errJson := json.Unmarshal(b, &taskArray)
