@@ -10,7 +10,8 @@
 3. Клонируем репозиторий `git clone https://github.com/legostin/gocron;`
 4. `cd gocron;`
 5. Задачи описываются в файле cronjob.json
-6. после описания нужных нам задач `go run main.go`
+6. после описания нужных нам задач `go build main.go`
+7. ./main &
 
 
 **Описание задач:**
